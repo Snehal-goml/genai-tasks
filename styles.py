@@ -136,27 +136,36 @@ def get_css():
         box-shadow: 0 0 30px rgba(100, 150, 255, 0.3), inset 0 0 20px rgba(100, 100, 255, 0.15) !important;
     }
 
-    /* Chat input - Bottom text box */
+    /* Chat input - Bottom text box (WHITE box, BLACK text) */
     [data-testid="stChatInput"] {
-        background: rgba(14, 17, 28, 0.95) !important;
-        border-top: 1px solid rgba(255,255,255,0.1) !important;
+        background: #ffffff !important;
+        border: 1px solid rgba(0, 0, 0, 0.15) !important;
+        border-radius: 16px !important;
     }
     
     [data-testid="stChatInput"] input {
-        background: linear-gradient(135deg, rgba(0, 200, 255, 0.08), rgba(255, 50, 150, 0.06)) !important;
-        border: 1.5px solid rgba(0, 200, 255, 0.4) !important;
-        border-radius: 15px !important;
-        color: white !important;
+        background: #ffffff !important;
+        border: none !important;
+        border-radius: 16px !important;
+        color: #000000 !important;
+        -webkit-text-fill-color: #000000 !important;
+        caret-color: #000000 !important;
         padding: 14px 18px !important;
         font-size: 1rem !important;
         transition: all 0.3s ease !important;
-        box-shadow: 0 0 25px rgba(0, 150, 255, 0.15) inset !important;
+        box-shadow: none !important;
     }
 
     [data-testid="stChatInput"] input:focus {
-        background: linear-gradient(135deg, rgba(0, 200, 255, 0.15), rgba(255, 50, 150, 0.1)) !important;
-        border: 1.5px solid rgba(0, 200, 255, 0.8) !important;
-        box-shadow: 0 0 40px rgba(0, 150, 255, 0.4), inset 0 0 25px rgba(0, 150, 255, 0.2) !important;
+        background: #ffffff !important;
+        border: none !important;
+        box-shadow: 0 0 0 2px rgba(100, 150, 255, 0.5) !important;
+    }
+
+    /* Chat input placeholder (gray on white box) */
+    [data-testid="stChatInput"] input::placeholder {
+        color: #888888 !important;
+        -webkit-text-fill-color: #888888 !important;
     }
 
     /* Text area styling for edit prompts */
@@ -180,6 +189,16 @@ def get_css():
     input::placeholder,
     textarea::placeholder {
         color: rgba(255, 255, 255, 0.4) !important;
+    }
+
+    /* Make typed text white in text inputs/textareas (chat input is black, handled above) */
+    input,
+    textarea,
+    input[type="text"],
+    input[type="search"] {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        caret-color: #ffffff !important;
     }
     
     /* Remove white gaps - fix top and bottom padding */

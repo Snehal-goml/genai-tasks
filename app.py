@@ -1,18 +1,46 @@
 import streamlit as st
 import uuid
+import json
+import os
 from datetime import datetime
 
 from agent import VyraAgent
 from styles import get_css
 
 
+HISTORY_FILE = os.path.join(os.path.dirname(__file__), "chats_history.json")
+
+
+def load_chats():
+    """Load saved chats from disk. Returns {} if none exist."""
+    if os.path.exists(HISTORY_FILE):
+        try:
+            with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, dict):
+                    return data
+        except Exception:
+            pass
+    return {}
+
+
+def save_chats():
+    """Persist all chats to disk."""
+    try:
+        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(st.session_state.chats, f, indent=2, ensure_ascii=False)
+    except Exception as error:
+        print(f"Could not save chat history: {error}")
+
+
+
 def init_session():
     if "chats" not in st.session_state:
-        st.session_state.chats = {}
+        st.session_state.chats = load_chats()
     
-    if "current_chat_id" not in st.session_state:
+    # Ensure there is always at least one chat
+    if not st.session_state.chats:
         chat_id = str(uuid.uuid4())
-        st.session_state.current_chat_id = chat_id
         st.session_state.chats[chat_id] = {
             "title": "New Chat",
             "messages": [],
@@ -22,6 +50,10 @@ def init_session():
                 "last_style": None
             }
         }
+        save_chats()
+    
+    if "current_chat_id" not in st.session_state or st.session_state.current_chat_id not in st.session_state.chats:
+        st.session_state.current_chat_id = next(iter(st.session_state.chats))
     
     if "regenerate_after_edit" not in st.session_state:
         st.session_state.regenerate_after_edit = False
@@ -43,6 +75,7 @@ def create_new_chat():
         }
     }
     st.session_state.current_chat_id = chat_id
+    save_chats()
 
 
 def update_metadata(style=None):
@@ -87,6 +120,7 @@ with st.sidebar:
         with col2:
             if st.button("🗑", key=f"delete_{chat_id}"):
                 del st.session_state.chats[chat_id]
+                save_chats()
                 
                 if st.session_state.current_chat_id == chat_id:
                     if st.session_state.chats:
@@ -113,6 +147,7 @@ with col1:
 with col2:
     if st.button("🧹 Clear", use_container_width=True):
         current_chat["messages"] = []
+        save_chats()
         st.rerun()
 
 
@@ -149,6 +184,7 @@ for index, message in enumerate(messages):
                     message["content"] = edited_prompt
                     current_chat["messages"] = messages[:index + 1]
                     st.session_state.regenerate_after_edit = True
+                    save_chats()
                     st.rerun()
 
 
@@ -182,6 +218,7 @@ if st.session_state.regenerate_after_edit and messages and messages[-1]["role"] 
                 })
                 
                 update_metadata(style=result["style"])
+                save_chats()
                 
                 st.rerun()
             
@@ -221,6 +258,7 @@ if user_input:
                 })
                 
                 update_metadata(style=result["style"])
+                save_chats()
                 
                 st.rerun()
             

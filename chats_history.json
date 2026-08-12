@@ -1,0 +1,21 @@
+{
+  "d0bc0b28-cfc7-4e50-b4d5-759a43681b7d": {
+    "title": "hello",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "\"Hello! It's lovely to meet you, but I have to say, the greeting itself is quite a remarkable feat of productivity. After all, isn't it usually the other way around – the day begins with a 'hello' to get us going? But I suppose that's just another clever trick our brains use to stay one step ahead of procrastination.\"",
+        "style": "SRK"
+      }
+    ],
+    "created_at": "2026-08-12T18:36:42.007054",
+    "metadata": {
+      "message_count": 1,
+      "last_style": "SRK"
+    }
+  }
+}
