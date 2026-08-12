@@ -38,22 +38,30 @@ def init_session():
     if "chats" not in st.session_state:
         st.session_state.chats = load_chats()
     
-    # Ensure there is always at least one chat
-    if not st.session_state.chats:
-        chat_id = str(uuid.uuid4())
-        st.session_state.chats[chat_id] = {
-            "title": "New Chat",
-            "messages": [],
-            "created_at": datetime.now().isoformat(),
-            "metadata": {
-                "message_count": 0,
-                "last_style": None
+    # On a fresh app session: open a new (empty) chat.
+    # Reuse an existing empty "New Chat" if one already exists,
+    # so repeated opens don't stack up multiple blank chats.
+    if "current_chat_id" not in st.session_state:
+        existing_new = next(
+            (cid for cid, c in st.session_state.chats.items()
+             if c["title"] == "New Chat" and not c["messages"]),
+            None
+        )
+        if existing_new:
+            st.session_state.current_chat_id = existing_new
+        else:
+            chat_id = str(uuid.uuid4())
+            st.session_state.chats[chat_id] = {
+                "title": "New Chat",
+                "messages": [],
+                "created_at": datetime.now().isoformat(),
+                "metadata": {
+                    "message_count": 0,
+                    "last_style": None
+                }
             }
-        }
-        save_chats()
-    
-    if "current_chat_id" not in st.session_state or st.session_state.current_chat_id not in st.session_state.chats:
-        st.session_state.current_chat_id = next(iter(st.session_state.chats))
+            st.session_state.current_chat_id = chat_id
+            save_chats()
     
     if "regenerate_after_edit" not in st.session_state:
         st.session_state.regenerate_after_edit = False

@@ -17,5 +17,24 @@
       "message_count": 1,
       "last_style": "SRK"
     }
+  },
+  "1e5416a7-0c28-4aa7-8667-1a47d4b32687": {
+    "title": "hi",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "\"Namaste! It's a pleasure to finally meet you, although I'm sure our conversation will be far more engaging than a formal greeting could ever hope for. How can I assist you today? The world is full of possibilities, and I'm here to help you explore them, one question at a time.\"",
+        "style": "SRK"
+      }
+    ],
+    "created_at": "2026-08-12T19:05:54.293647",
+    "metadata": {
+      "message_count": 1,
+      "last_style": "SRK"
+    }
   }
 }
