@@ -87,15 +87,15 @@ def get_css():
         100% { opacity: 0.3; }
     }
 
-    /* Sidebar */
+    /* Sidebar - solid dark */
     [data-testid="stSidebar"] {
-        background: rgba(14, 17, 28, 0.95);
+        background: #0e111c !important;
         border-right: 1px solid rgba(255,255,255,0.08);
     }
 
-    /* Chat message cards */
+    /* Chat message cards - solid dark */
     [data-testid="stChatMessage"] {
-        background: rgba(255, 255, 255, 0.04);
+        background: #141927 !important;
         border: 1px solid rgba(255,255,255,0.06);
         border-radius: 18px;
         padding: 10px;
@@ -247,7 +247,26 @@ def get_css():
 
     /* Expand buttons / other widgets */
     [data-testid="stExpander"] {
-        background: rgba(255,255,255,0.04) !important;
+        background: #141927 !important;
+    }
+
+    /* Catch-all: force dark backgrounds on all Streamlit containers so white text is always readable */
+    [data-testid="stAppViewContainer"],
+    [data-testid="stHeader"],
+    [data-testid="stSidebar"],
+    [data-testid="stMain"],
+    [data-testid="stMainBlockContainer"],
+    [data-testid="stVerticalBlock"],
+    [data-testid="stVerticalBlockBorderWrapper"],
+    [data-testid="stHorizontalBlock"],
+    [data-testid="stBottom"],
+    [data-testid="stBottomBlockContainer"],
+    [data-testid="stExpander"],
+    [data-testid="stChatMessage"],
+    [data-testid="stMarkdownContainer"],
+    section.main,
+    .main .block-container {
+        background-color: #0a0e1a !important;
     }
 
     </style>
