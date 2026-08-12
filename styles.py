@@ -136,20 +136,20 @@ def get_css():
         box-shadow: 0 0 30px rgba(100, 150, 255, 0.3), inset 0 0 20px rgba(100, 100, 255, 0.15) !important;
     }
 
-    /* Chat input - Bottom text box (WHITE box, BLACK text) */
+    /* Chat input - Bottom text box (GREY box, WHITE text) */
     [data-testid="stChatInput"] {
-        background: #ffffff !important;
-        border: 1px solid rgba(0, 0, 0, 0.15) !important;
+        background: #444444 !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
         border-radius: 16px !important;
     }
     
     [data-testid="stChatInput"] input {
-        background: #ffffff !important;
+        background: #444444 !important;
         border: none !important;
         border-radius: 16px !important;
-        color: #000000 !important;
-        -webkit-text-fill-color: #000000 !important;
-        caret-color: #000000 !important;
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        caret-color: #ffffff !important;
         padding: 14px 18px !important;
         font-size: 1rem !important;
         transition: all 0.3s ease !important;
@@ -157,32 +157,34 @@ def get_css():
     }
 
     [data-testid="stChatInput"] input:focus {
-        background: #ffffff !important;
+        background: #444444 !important;
         border: none !important;
         box-shadow: 0 0 0 2px rgba(100, 150, 255, 0.5) !important;
     }
 
-    /* Chat input placeholder (gray on white box) */
+    /* Chat input placeholder (light gray on grey box) */
     [data-testid="stChatInput"] input::placeholder {
-        color: #888888 !important;
-        -webkit-text-fill-color: #888888 !important;
+        color: #cccccc !important;
+        -webkit-text-fill-color: #cccccc !important;
     }
 
-    /* Text area styling for edit prompts */
+    /* Text area styling for edit prompts (BLACK box, WHITE text) */
     textarea {
-        background: linear-gradient(135deg, rgba(100, 50, 255, 0.08), rgba(255, 50, 150, 0.06)) !important;
-        border: 1.5px solid rgba(150, 100, 255, 0.3) !important;
+        background: #000000 !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
         border-radius: 12px !important;
-        color: white !important;
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        caret-color: #ffffff !important;
         padding: 12px 16px !important;
         transition: all 0.3s ease !important;
-        box-shadow: 0 0 20px rgba(150, 100, 255, 0.1) inset !important;
+        box-shadow: none !important;
     }
 
     textarea:focus {
-        background: linear-gradient(135deg, rgba(100, 50, 255, 0.15), rgba(255, 50, 150, 0.1)) !important;
-        border: 1.5px solid rgba(150, 150, 255, 0.6) !important;
-        box-shadow: 0 0 30px rgba(150, 100, 255, 0.3), inset 0 0 20px rgba(150, 100, 255, 0.15) !important;
+        background: #000000 !important;
+        border: 1px solid rgba(100, 150, 255, 0.6) !important;
+        box-shadow: 0 0 0 2px rgba(100, 150, 255, 0.4) !important;
     }
 
     /* Input placeholder styling */
